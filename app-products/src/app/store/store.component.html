@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1>Товары</h1></div>
+    <div class="panel-body ">
+      <div *ngIf="loading; else afterLoadBlock" class=""><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #afterLoadBlock>
+  <div *ngIf="error; else workBlock" class="alert alert-danger">{{error}}</div>
+</ng-template>
+
+<ng-template #workBlock>
+  <div class="content">
+    <div *ngIf="model.isEmpty(); else productsBlock" class="">No data</div>
+  </div>
+</ng-template>
+
+<ng-template #productsBlock>
+  <div *ngIf="model.list.isListCategories(); else listProductsBlock" class="panel">
+    <categories
+      [categories]="model.list.getItems()"
+    ></categories>
+  </div>
+</ng-template>
+
+<ng-template #listProductsBlock>
+  Products
+</ng-template>

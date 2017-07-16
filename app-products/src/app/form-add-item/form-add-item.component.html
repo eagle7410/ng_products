@@ -1,0 +1,55 @@
+
+<form name="form" #form="ngForm" (ngSubmit)="submitForm(form.value)" class="add-item-form">
+  <div class="row">
+    <div class="select-type" *ngIf="type === null" >
+      <div class="col-md-4">
+        <select
+          class="form-control"
+          name="type"
+          [(ngModel)]="type"
+          (change) = "changeType()"
+        >
+          <option [value]="null" >Выберите что добавляем?</option>
+          <option [value]="typeProducts" >Товар</option>
+          <option [value]="typeCategory" >Категорию</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="add-item" *ngIf="type !== null" >
+
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-primary">Добаить</button>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group" [ngClass]="{ 'has-error': errorTitleMessage.length}">
+          <input type='text'
+                 class="form-control"
+                 placeholder="Название"
+                 *ngIf="type !== null"
+                 name="title"
+                 ngModel
+          />
+          <div *ngIf="errorTitleMessage.length" class="help-block">{{errorTitleMessage}}</div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <input type='number'
+               class="form-control"
+               placeholder="Новий вес"
+               min="0"
+               name="weight"
+               ngModel
+               *ngIf="type === typeProducts && type !== null"
+        />
+      </div>
+
+
+    </div>
+  </div>
+
+</form>
+
+

@@ -1,0 +1,18 @@
+
+<form  name="form" #form="ngForm" (ngSubmit)="submitForm(form.value)">
+  <div class="col-sm-6">
+    <div class="input-group">
+      <input type='number'
+             class="form-control"
+             placeholder="Новий вес"
+             min="0"
+             name="newValue"
+             ngModel
+      />
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary ">Сохранить</button>
+      </span>
+    </div>
+  </div>
+
+</form>

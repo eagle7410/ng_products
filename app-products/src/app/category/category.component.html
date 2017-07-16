@@ -1,0 +1,54 @@
+<b>{{data.title}} ({{data.weight}})</b>
+<div class="btn-group" role="group" aria-label="...">
+  <button
+    class="btn btn-default"
+    (click)="isShowList = !isShowList"
+    *ngIf="!isEmptyList"
+    >
+    <span *ngIf="!isShowList">
+      Показать <span class="glyphicon glyphicon-hand-down"></span>
+    </span>
+    <span *ngIf="isShowList">
+      Скрыть <span class="glyphicon glyphicon-hand-up"></span>
+    </span>
+  </button>
+  <button
+    type="button"
+    class="btn btn-default"
+    (click)="changeWeightSort()"
+    *ngIf="isShowList"
+  >
+      Сортировать
+      <span *ngIf="weightSortAbs === true" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+      <span *ngIf="weightSortAbs === false" class="glyphicon glyphicon-sort-by-alphabet"></span>
+  </button>
+  <button
+          [class]="isShowAddForm ? 'btn btn-danger' : 'btn btn-success'"
+          (click) = "isShowAddForm = !isShowAddForm" >
+      {{isShowAddForm ? 'Отмена' : 'Добавить'}}
+  </button>
+</div>
+
+<div class="category-tools-body">
+    <form-add-item
+        *ngIf="isShowAddForm"
+        [changeIn] = "data"
+        (addItem)  = "addItem()"
+    ></form-add-item>
+</div>
+
+<div *ngIf="!isEmptyList &&  isShowList">
+
+  <div *ngIf="data.list.isListCategories()">
+    <categories
+      [categories]="data.list.getItems(weightSortAbs)"
+    ></categories>
+  </div>
+
+  <div *ngIf="!data.list.isListCategories()">
+    <products
+      [products]="getItems()"
+    ></products>
+  </div>
+
+</div>

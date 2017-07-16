@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.list-group {
+  margin: 0 !important;
+}
+.add-item,.select-type,.add-item-form {
+  margin-top: 10px;
+}

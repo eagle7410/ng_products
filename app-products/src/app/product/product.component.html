@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-4">
+    {{data.title}} ({{data.weight}})
+  </div>
+  <div class="col-md-8">
+    <div class="col-sm-2">
+      <button
+        [class]="isShowChangeForm ? 'btn btn-danger' : 'btn btn-success'"
+        (click) = "isShowChangeForm = !isShowChangeForm" >
+        {{isShowChangeForm ? 'Отмена' : 'Изменить вес'}}
+      </button>
+    </div>
+    <form-change-weight
+      *ngIf="isShowChangeForm"
+      [changeIn]="data"
+      (changeWeight)="isShowChangeForm = false"
+    ></form-change-weight>
+  </div>
+
+</div>
+
